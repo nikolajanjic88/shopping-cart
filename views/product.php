@@ -22,7 +22,7 @@
                 <input type="hidden" name="id" value="<?=$_GET['id'] ?>">
                 <input type="number" step="1" min="1" name="qty" value="1">
                 <?php if(isset($errors['qty'])): ?>
-                <p class="error"><?= $errors['qty'] ?></p>
+                    <p class="error"><?= $errors['qty'] ?></p>
                 <?php endif ?>
                 <button class="btn">Add to Cart</button>
             </form>           

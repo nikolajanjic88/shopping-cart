@@ -43,6 +43,28 @@ class Cart
                             'user_id' => $user_id]);
   }
 
+  public function limit($user_id, $product_id)
+  {
+    $sql = "SELECT product_id, user_id, SUM(quantity) as qty 
+                    FROM $this->table
+                    WHERE user_id = :user_id
+                    AND product_id = :product_id";
+    $res = $this->db->query($sql, ['user_id' => $user_id, 'product_id' => $product_id])->findOrFail();
+    return $res['qty'];
+  }
+
+  public function validate($data)
+  {
+    if(empty($data['qty'])) $this->errors['qty'] = 'Insert quantity';
+
+    if(empty($this->errors))
+    {
+      return true;
+    }
+
+    return false;
+  }
+
   public function delete($id)
   {
     $sql = "DELETE FROM $this->table WHERE id = ?";
