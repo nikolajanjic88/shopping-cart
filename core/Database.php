@@ -12,7 +12,6 @@ class Database {
         $this->conn = new PDO($dsn, $username, $password);
         $this->conn->exec("set names utf8");
         $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        if($this->conn);
     }
 
     public function query($query, $params = []) {

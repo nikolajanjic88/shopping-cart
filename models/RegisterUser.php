@@ -12,36 +12,36 @@ class RegisterUser extends User
 
   public function validate($data) 
   {
-    if(trim($data['email']) === '') 
+    if(trim($data[$this->email]) === '') 
     {
-      $this->errors['email'] = 'Email required';
+      $this->errors[$this->email] = 'Email required';
     } 
-    else if (!email($data['email'])) 
+    else if (!email($data[$this->email])) 
     {
-      $this->errors['email'] = 'Invalid email';
+      $this->errors[$this->email] = 'Invalid email';
     }
 
-    if(trim($data['name']) === '') 
+    if(trim($data[$this->name]) === '') 
     {
-      $this->errors['name'] = 'Name required';
+      $this->errors[$this->name] = 'Name required';
     }
-    else if(!preg_match("/^[a-zA-Z ]+$/", $data['name']))
+    else if(!preg_match("/^[a-zA-Z ]+$/", $data[$this->name]))
     {
-      $this->errors['name'] = 'Name and last name must have only letters';
+      $this->errors[$this->name] = 'Name and last name must have only letters';
     }
 
-    if(trim($data['password']) === '') 
+    if(trim($data[$this->password]) === '') 
     {
-      $this->errors['password'] = 'Password required';
+      $this->errors[$this->password] = 'Password required';
     }    
-    else if(!passwordLength($data['password'])) 
+    else if(!passwordLength($data[$this->password])) 
     {
-      $this->errors['password'] = 'Password must have between 6 and 20 characters';
+      $this->errors[$this->password] = 'Password must have between 6 and 20 characters';
     }
 
-    if(!compareValues($data['password'], $data['confirm_password'])) 
+    if(!compareValues($data[$this->password], $data['confirm_password'])) 
     {
-      $this->errors['confirm_password'] = 'Passwords are not matching';
+      $this->errors[$this->password] = 'Passwords are not matching';
     }
 
     $sql = "SELECT email FROM $this->table where email = ?";
@@ -58,7 +58,6 @@ class RegisterUser extends User
     }
 
     return false;
-
   }
 
   public function register($name, $email, $password)

@@ -31,7 +31,6 @@ class Comment
     return $comments;
   }
 
-
   public function insert($body, $product_id, $user_id)
   {
     $sql = "INSERT INTO $this->table
@@ -45,14 +44,12 @@ class Comment
     ]);
   }
 
-
   public function delete($id)
   {
     $sql = "DELETE FROM $this->table WHERE id = ?";
 
     $this->db->query($sql, [$id]);
   }
-
 
   public function validate($data)
   {

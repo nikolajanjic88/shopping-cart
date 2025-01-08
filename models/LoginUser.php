@@ -7,29 +7,29 @@ class LoginUser extends User
 
   public function validate($data) 
   {
-    if(trim($data['email']) === '') 
+    if(trim($data[$this->email]) === '') 
     {
-      $this->errors['email'] = 'Email required';
+      $this->errors[$this->email] = 'Email required';
     } 
-    else if (!email($data['email'])) 
+    else if (!email($data[$this->email])) 
     {
-      $this->errors['email'] = 'Invalid email';
+      $this->errors[$this->email] = 'Invalid email';
     } 
 
-    $user = $this->findUser($data['email']);
+    $user = $this->findUser($data[$this->email]);
     
     if(!$user) 
     {
-      $this->errors['email'] = "User doesn't exist";
+      $this->errors[$this->email] = "User doesn't exist";
     }
 
-    if(trim($data['password']) === '') 
+    if(trim($data[$this->password]) === '') 
     {
-      $this->errors['password'] = 'Password required';
+      $this->errors[$this->password] = 'Password required';
     }   
-    else if($user && !password_verify($data['password'], $user['password'])) 
+    else if($user && !password_verify($data[$this->password], $user['password'])) 
     {
-      $this->errors['password'] = 'Wrong password';
+      $this->errors[$this->password] = 'Wrong password';
     }
 
     if(empty($this->errors))

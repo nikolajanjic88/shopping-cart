@@ -36,7 +36,7 @@ class Cart
   public function insert($qty, $product_id, $user_id)
   {
     $sql = "INSERT INTO $this->table (product_id, quantity, user_id) 
-                      VALUES (:product_id, :qty, :user_id)";
+                              VALUES (:product_id, :qty, :user_id)";
  
     $this->db->query($sql, ['product_id' => $product_id, 
                             'qty' => $qty, 
