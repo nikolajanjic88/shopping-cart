@@ -42,9 +42,9 @@ class Product
                     JOIN {$this->join_tables['images']} i
                     ON p.id = i.product_id 
                     GROUP BY p.id
-                    HAVING p.title LIKE '%" . $_GET['search'] . "%'";
+                    HAVING p.title LIKE CONCAT('%',?,'%')";
           
-      $products = $this->db->query($sql)->get();
+      $products = $this->db->query($sql, [$_GET['search']])->get();
     }
     else 
     {
