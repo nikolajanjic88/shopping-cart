@@ -67,12 +67,9 @@ class Product
                      ON p.id = i.product_id
                      WHERE p.id = :id";
 
-    $result = $this->db->query($sql, ['id' => $id])->findOrFail();
-    
+    $result = $this->db->query($sql, ['id' => $id])->findOrFail();   
     $sql = "SELECT path FROM {$this->join_tables['images']} WHERE product_id = :id";
-
     $images = $this->db->query($sql, ['id' => $id])->get();
-
     $product = array_merge($result, $images);
 
     return $product;
@@ -85,7 +82,8 @@ class Product
                   FROM $this->table p
                   LEFT JOIN {$this->join_tables['images']} i
                   ON p.id = i.product_id 
-                  GROUP BY p.id";
+                  GROUP BY p.id
+                  ORDER BY added_at DESC";
 
     $products = $this->db->query($sql)->get();
 
@@ -144,14 +142,10 @@ class Product
   public function delete($id)
   {
     $sql = "DELETE FROM $this->table WHERE id = ?";
-
     $this->db->query($sql, [$id]);
-
     $dir = BASE_PATH . "/public/images/products/{$id}";
-
     delTree($dir);
   }
-
 
   public function getCategories()
   {
@@ -185,12 +179,7 @@ class Product
       $this->errors['category'] = 'Select a category';
     } 
 
-    if(empty($this->errors))
-    {
-      return true;
-    }
-
-    return false;
+    return empty($this->errors);
   }
 
 }

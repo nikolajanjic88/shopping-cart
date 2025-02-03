@@ -6,12 +6,12 @@ use app\core\Database;
 
 class Comment
 {
-  private $table = 'comments';
-  private $join_tables = [
+  private string $table = 'comments';
+  private array $join_tables = [
     'users' => 'users',
   ];
-  private $db;
-  public $errors = [];
+  private Database $db;
+  public array $errors = [];
 
   public function __construct(Database $db)
   {

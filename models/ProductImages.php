@@ -51,31 +51,24 @@ class ProductImages
   }
 
   public function validate($image)
-  {
-    if(!validImageDimensions($image['tmp_name']))
-    {
-      $this->errors['image'] = 'Width & height must be less than 500 pixels';
-    }
-    
+  {      
     if(empty($image['tmp_name'])) 
     {
-        $this->errors['image'] = 'No File chosen';
+      $this->errors['image'] = 'No File chosen';
     }
-    else if(!is_image($image['tmp_name'])) 
+    else if(!is_image($image['tmp_name']))
     {
-        $this->errors['image'] = 'Invalid format';
+      $this->errors['image'] = 'Invalid format';
+    }
+    else if($image['size'] > 150000) 
+    {
+      $this->errors['image'] = 'Must be 150kb or less';
+    }
+    else if(!validImageDimensions($image['tmp_name'], 1000, 1000))
+    {
+      $this->errors['image'] = 'Width & height must be less than 1000 pixels';
     }
 
-    if($image['size'] > 70000) 
-    {
-        $this->errors['image'] = 'Must be 70kb or less';
-    }
-
-    if(empty($this->errors))
-    {
-      return true;
-    }
-
-    return false;
+    return empty($this->errors);
   }
 }

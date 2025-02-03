@@ -75,9 +75,9 @@ function is_image($path)
 }
 
 
-function validImageDimensions($image)
+function validImageDimensions($image, $width, $height)
 {
-    if(!empty($image) && (getimagesize($image)[0] > 1000 || getimagesize($image)[1] > 1000))
+    if(!empty($image) && (getimagesize($image)[0] > $width || getimagesize($image)[1] > $height))
     {
         return false;
     }

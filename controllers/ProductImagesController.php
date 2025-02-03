@@ -12,9 +12,9 @@ class ProductImagesController extends Controller
 {
   use Guard;
 
-  private $db;
-  private $productImages;
-  private $request;
+  private Database $db;
+  private ProductImages $productImages;
+  private Request $request;
 
   public function __construct()
   {

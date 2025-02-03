@@ -21,13 +21,11 @@ class CommentController extends Controller
     ]);
   }
 
-
   public function create()
   {
     if($this->isGuest()) return redirect('login');
     return $this->view('add-comment');
   }
-
 
   public function store()
   {
@@ -43,7 +41,6 @@ class CommentController extends Controller
                   'errors' => $this->commentModel->errors
     ]);   
   }
-
 
   public function destroy()
   { 

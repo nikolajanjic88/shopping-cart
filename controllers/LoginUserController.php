@@ -12,9 +12,9 @@ class LoginUserController extends Controller
 {
   use Guard;
   
-  private $db;
-  private $user;
-  private $request;
+  private Database $db;
+  private LoginUser $user;
+  private Request $request;
 
   public function __construct()
   {

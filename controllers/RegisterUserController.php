@@ -12,9 +12,9 @@ class RegisterUserController extends Controller
 {
   use Guard; 
   
-  private $db;
-  private $user;
-  private $request;
+  private Database $db;
+  private RegisterUser $user;
+  private Request $request;
 
   public function __construct()
   {

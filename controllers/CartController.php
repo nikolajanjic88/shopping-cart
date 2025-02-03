@@ -14,11 +14,11 @@ class CartController extends Controller
 {
   use Guard;
   
-  private $db;
-  private $cartModel;
-  private $request;
-  private $productModel;
-  private $commentModel;
+  private Database $db;
+  private Cart $cartModel;
+  private Request $request;
+  private Product $productModel;
+  private Comment $commentModel;
 
   public function __construct()
   {

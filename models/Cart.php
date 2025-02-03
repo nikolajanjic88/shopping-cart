@@ -6,13 +6,13 @@ use app\core\Database;
 
 class Cart 
 {
-  private $table = 'cart';
-  private $join_tables = [
+  private string $table = 'cart';
+  private array $join_tables = [
     'products' => 'products',
     'images' => 'images'
   ];
-  private $db;
-  public $errors = [];
+  private Database $db;
+  public array $errors = [];
 
   public function __construct(Database $db)
   {
